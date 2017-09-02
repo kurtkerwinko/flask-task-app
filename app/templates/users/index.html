@@ -1,7 +1,8 @@
 {% extends "layouts/application.html" %}
 {% block body %}
+  {% from "_paginationhelpers.html" import render_pagination %}
   <ul class=tasks>
-    {% for user in users %}
+    {% for user in users.items %}
       <li>
         <h2>
           {{ user.username }}
@@ -15,4 +16,5 @@
       <li><em>Unbelievable.  No users here so far</em></li>
     {% endfor %}
   </ul>
+  {{ render_pagination(users, 'users.index') }}
 {% endblock %}

@@ -26,9 +26,6 @@ def index():
   elif fltr == 'nc':
     tasks = Task.query.filter_by(completed_by=None)
   tasks = tasks.paginate(page, app.config["ITEMS_PER_PAGE"], False)
-  print("===================================")
-  print(app.jinja_env)
-  print("===================================")
   return render_template('tasks/index.html', tasks=tasks)
 
 @mod_tasks.route('/new', methods=['GET'])
