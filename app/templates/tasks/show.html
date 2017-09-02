@@ -1,0 +1,27 @@
+{% extends "layouts/application.html" %}
+{% block body %}
+{% if session.logged_in %}
+  {% if not task.completed_by %}
+    <form action="{{ url_for('tasks.complete', id=task.id) }}" method=post class=complete>
+      <input type="submit" name="submit" value="Complete">
+    </form>
+    <form action="{{ url_for('tasks.delete', id=task.id) }}" method=post class=delete>
+      <input type="submit" name="submit" value="Delete">
+    </form>
+  {% endif %}
+{% endif %}
+<dl>
+  <dt>Title</dt>
+  <dd>{{ task.title }}</dd>
+  <dt>Description</dt>
+  <dd>{{ task.description }}</dd>
+  <dt>Added By</dt>
+  <dd>{{ task.added_by }}</dd>
+  <dt>Created At</dt>
+  <dd>{{ task.created_at }}</dd>
+  <dt>Completed By</dt>
+  <dd>{{ task.completed_by }}</dd>
+  <dt>Completed At</dt>
+  <dd>{{ task.completed_at }}</dd>
+</dl>
+{% endblock %}

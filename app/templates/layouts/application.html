@@ -1,0 +1,26 @@
+<!doctype html>
+<title>Task App</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+  <h1>Task App</h1>
+  <div class=metanav>
+    <a href="{{ url_for('home.index') }}">home</a>
+    <a href="{{ url_for('users.index') }}">all users</a>
+    <a href="{{ url_for('tasks.index') }}">all tasks</a>
+    {% if not session.logged_in %}
+      <a href="{{ url_for('auth.signin') }}">log in</a>
+      <a href="{{ url_for('auth.signup') }}">sign up</a>
+    {% else %}
+      <a href="{{ url_for('tasks.new') }}">new task</a>
+      <form action="{{ url_for('auth.logout') }}" method=post class=logout>
+        <button type="submit" name="submit_param" value="submit_value" class="link-button">
+          logout
+        </button>
+      </form>
+    {% endif %}
+  </div>
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+  {% block body %}{% endblock %}
+</div>

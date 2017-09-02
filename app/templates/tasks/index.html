@@ -1,0 +1,18 @@
+{% extends "layouts/application.html" %}
+{% block body %}
+  <ul class=entries>
+    {% for task in tasks %}
+      <li>
+        <h2>
+          {{ task.title }}
+          <small>
+            <a href="{{ url_for('tasks.show', id=task.id) }}">view</a>
+          </small>
+        </h2>
+        added by {{ task.added_by }}, completed by {{ task.completed_by }}
+      </li>
+    {% else %}
+      <li><em>Unbelievable.  No tasks here so far</em></li>
+    {% endfor %}
+  </ul>
+{% endblock %}
