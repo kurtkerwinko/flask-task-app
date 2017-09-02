@@ -3,7 +3,7 @@ from flask import Blueprint, request, render_template, abort, \
                   flash, g, session, redirect, url_for
 
 # Import the database object from the main app module
-from app import db
+from app import app, db
 
 # Import module forms
 from app.mod_tasks.forms import TaskForm
@@ -18,7 +18,17 @@ mod_tasks = Blueprint('tasks', __name__, url_prefix='/tasks')
 # Set the route and accepted methods
 @mod_tasks.route('/')
 def index():
-  tasks = Task.query.all()
+  fltr = request.args.get('s')
+  page = 1 if request.args.get('page')==None else int(request.args.get('page'))
+  tasks = Task.query
+  if fltr == 'c':
+    tasks = Task.query.filter(Task.completed_by != None)
+  elif fltr == 'nc':
+    tasks = Task.query.filter_by(completed_by=None)
+  tasks = tasks.paginate(page, app.config["ITEMS_PER_PAGE"], False)
+  print("===================================")
+  print(app.jinja_env)
+  print("===================================")
   return render_template('tasks/index.html', tasks=tasks)
 
 @mod_tasks.route('/new', methods=['GET'])

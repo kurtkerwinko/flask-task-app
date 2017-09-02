@@ -10,6 +10,9 @@ app = Flask(__name__)
 # Configurations
 app.config.from_object('config')
 
+# Jinja extensions
+app.jinja_env.add_extension('jinja2.ext.do')
+
 # Define the database object which is imported
 # by modules and controllers
 db = SQLAlchemy(app)
