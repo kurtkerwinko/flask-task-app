@@ -1,0 +1,18 @@
+{% extends "layouts/application.html" %}
+{% block body %}
+  <dl>
+    <dt>username</dt>
+    <dd>{{ user.username }}</dd>
+    <dt>first name</dt>
+    <dd>{{ user.first_name }}</dd>
+    <dt>last name</dt>
+    <dd>{{ user.last_name }}</dd>
+  </dl>
+
+  {% from "tasks/_tasks_list.html" import render_tasks_list %}
+  <h2>Tasks Added</h2>
+  {{ render_tasks_list(user.added_tasks) }}
+
+  <h2>Tasks Completed</h2>
+  {{ render_tasks_list(user.completed_tasks) }}
+{% endblock %}

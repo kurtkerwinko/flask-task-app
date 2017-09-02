@@ -1,0 +1,16 @@
+{% macro render_tasks_list(tasks) %}
+<ul>
+  {% for task in tasks %}
+    <li>
+      <h2>
+        {{ task.title }}
+        <small>
+          <a href="{{ url_for('tasks.show', id=task.id) }}">view</a>
+        </small>
+      </h2>
+    </li>
+  {% else %}
+    <li><em>No tasks added</em></li>
+  {% endfor %}
+</ul>
+{% endmacro %}

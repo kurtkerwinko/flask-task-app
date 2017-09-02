@@ -33,7 +33,7 @@ class Task(db.Model):
     self.added_by = added_by
 
   def __repr__(self):
-    return 'Task %r, Added By %r, Completed By %r' % (self.title, self.added_by, self.completed_by)
+    return 'Task %s, Added By %s, Completed By %s' % (self.title, self.added_by, self.completed_by)
 
   def complete(self, user):
     self.completed_by = user

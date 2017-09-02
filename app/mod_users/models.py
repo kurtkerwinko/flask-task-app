@@ -18,11 +18,6 @@ class User(db.Model):
   username   = db.Column(db.String(80), unique=True)
   password   = db.Column(db.String(120))
 
-  # # added_entries = db.relationship("Entry",
-  #                       primaryjoin="and_(User.id==Entry.added_by_id)",
-  #                       backref="user")
-  # completed_entries = db.relationship("Entry", backref="user")
-
   def __init__(self, first_name, last_name, username, password):
     self.first_name = first_name
     self.last_name = last_name
