@@ -27,4 +27,5 @@ CSRF_SESSION_KEY = "secret"
 # Secret key for signing cookies
 SECRET_KEY = "secret"
 
+# Pagination
 ITEMS_PER_PAGE = 5
